@@ -5,7 +5,7 @@
 //  Created by Rubén García on 13/9/23.
 //
 
-#if os(iOS)
+#if os(iOS) && canImport(SwiftUI)
 import SwiftUI
 /// Provides a convenient 'wrapper' around a UIView
 public struct UIWrapping<V>: View {

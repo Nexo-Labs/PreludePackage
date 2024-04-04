@@ -1,10 +1,11 @@
 //
-//  File.swift
+//  Image.swift
 //  
 //
 //  Created by Rubén García on 14/9/23.
 //
 
+#if canImport(SwiftUI) && canImport(CoreGraphics)
 import SwiftUI
 import CoreGraphics
 
@@ -134,3 +135,4 @@ public extension Image {
         return dir
     }
 }
+#endif

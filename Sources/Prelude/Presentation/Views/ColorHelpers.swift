@@ -1,10 +1,11 @@
 //
-//  File.swift
+//  ColorHelpers.swift
 //  
 //
 //  Created by Rubén García on 14/9/23.
 //
 
+#if canImport(SwiftUI)
 import SwiftUI
 
 public extension Color {    
@@ -48,3 +49,4 @@ public extension Color {
         return NSString(format: "#%06x", rgb) as String
     }
 }
+#endif

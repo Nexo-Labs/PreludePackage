@@ -1,10 +1,11 @@
 //
-//  File.swift
+//  SwiftUIHelpers.swift
 //  
 //
 //  Created by Rubén García on 14/9/23.
 //
 
+#if canImport(SwiftUI)
 import SwiftUI
 
 public extension View {
@@ -64,3 +65,4 @@ public extension URL {
 #endif
     }
 }
+#endif

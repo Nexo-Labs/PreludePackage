@@ -5,7 +5,7 @@
 //  Created by Rubén García on 14/9/23.
 //
 
-#if os(macOS)
+#if canImport(AppKit) && canImport(SwiftUI)
 import AppKit
 import SwiftUI
 
