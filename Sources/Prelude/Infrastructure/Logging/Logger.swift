@@ -6,13 +6,6 @@
 //
 
 import Foundation
-import os.log
-
-public extension os.Logger {
-    private static var subsystem = Bundle.main.bundleIdentifier!
-
-    static let main = os.Logger(subsystem: subsystem, category: "main")
-}
 
 public enum LogLevel: String {
     case DEBUG = "🔵"
@@ -20,27 +13,11 @@ public enum LogLevel: String {
     case DEFAULT = "🟡"
     case ERROR = "🔴"
     case FAULT = "⚫️"
-
-    var osLog: OSLogType {
-        switch self {
-        case .DEBUG:
-            return OSLogType.debug
-        case .INFO:
-            return OSLogType.info
-        case .DEFAULT:
-            return OSLogType.default
-        case .ERROR:
-            return OSLogType.error
-        case .FAULT:
-            return OSLogType.fault
-        }
-    }
 }
 
 public protocol LoggerStrategy {
     func log(_ object: Any..., separator: String, terminator: String, level: LogLevel)
 }
-
 
 public struct Logger {
     let strategy: LoggerStrategy
@@ -88,8 +65,5 @@ public struct Logger {
 
 extension Logger {
     static let `default` = Logger(strategy: .default)
-    static let osLog = Logger(strategy: .osLog)
-    static func rotationFileLogger(directory: URL, maxLogsToKeep: Int) -> Logger {
-        Logger(strategy: .rotationFileLogger(directory: directory, maxLogsToKeep: maxLogsToKeep))
-    }
 }
+

@@ -63,3 +63,9 @@ public extension SimpleLoggerStrategy {
         }
     }
 }
+
+extension Logger {
+    static func rotationFileLogger(directory: URL, maxLogsToKeep: Int) -> Logger {
+        Logger(strategy: .rotationFileLogger(directory: directory, maxLogsToKeep: maxLogsToKeep))
+    }
+}

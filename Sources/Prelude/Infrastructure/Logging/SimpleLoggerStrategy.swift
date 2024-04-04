@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import os.log
 
 public struct SimpleLoggerStrategy: LoggerStrategy {
     public func log(_ objects: Any..., separator: String, terminator: String, level: LogLevel) {
@@ -25,10 +24,6 @@ public extension SimpleLoggerStrategy {
         } else {
             print("\(level.rawValue) \(String(describing: object))")
         }
-    }
-    
-    static let osLog = Self { object, separator, terminator, level in
-        os.Logger.main.log(level: level.osLog, "\(level.rawValue) \(String(describing: object))")
     }
 }
 
