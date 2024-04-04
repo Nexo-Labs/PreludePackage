@@ -4,7 +4,7 @@
 //
 //  Created by Rubén on 16/4/23.
 //
-
+#if canImport(Combine)
 import Combine
 
 @propertyWrapper
@@ -42,3 +42,4 @@ public extension AnyPublisher {
         }.eraseToAnyPublisher()
     }
 }
+#endif
