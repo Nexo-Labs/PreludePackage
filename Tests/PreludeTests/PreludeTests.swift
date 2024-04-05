@@ -1,5 +1,5 @@
 import XCTest
-@testable import Prelude
+@testable import PreludePackage
 
 final class PreludeTests: XCTestCase {
     func testExample() throws {
