@@ -9,6 +9,8 @@ import Foundation
 
 public protocol LoadedFromEnvironmentVariable {
     init(envText: String)
+    
+    var isValid: Bool { get }
 }
 
 @propertyWrapper
@@ -41,14 +43,17 @@ public struct KeychainWrapper<Wrapped: LoadedFromEnvironmentVariable & Codable> 
     }
 
     private var decode: Wrapped? {
-        let data: Data?
+        var data: Data?
         if EnvironmentHelpers.isRunningInPreview {
             data = nil
         } else if let envText = Self.getEnvironmentVar(service) {
-            return Wrapped(envText: envText)
-        } else {
-            data = try? KeychainAccess.shared.getData(service) ?? "nil".data(using: .utf8)
+            let wrapped = Wrapped(envText: envText)
+            if wrapped.isValid {
+                return wrapped
+            }
         }
+        data = try? KeychainAccess.shared.getData(service) ?? "nil".data(using: .utf8)
+
         guard let data, let wrapped = try? JSONDecoder().decode(Wrapped.self, from: data) else { return nil }
         return wrapped
     }
